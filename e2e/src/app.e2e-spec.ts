@@ -60,28 +60,4 @@ describe('workspace-project App', () => {
     expect(element(by.id(ConstantsE2E.ID_LABEL_FECHA_FIN_PAGO)).getText()).not.toBe('');
     expect(element(by.id(ConstantsE2E.ID_LABEL_VALOR_PAGO)).getText()).toEqual(ConstantsE2E.VALOR_PAGAR_CARRO_TEST);
   });
-
-  it('should not permit insert one vehicule two times', () => {
-    page.navigateTo();
-    // ingresar vehiculos
-    element(by.id(ConstantsE2E.ID_BOTON_REGISTRAR_CARRO)).click();
-    element(by.id(ConstantsE2E.ID_INPUT_REGISTRO_PLACA)).sendKeys(ConstantsE2E.PLACA_CARRO_2_TEST);
-    element(by.id(ConstantsE2E.ID_BOTON_REGISTRAR)).click();
-    element(by.id(ConstantsE2E.ID_BOTON_REGISTRAR_CARRO)).click();
-    element(by.id(ConstantsE2E.ID_INPUT_REGISTRO_PLACA)).sendKeys(ConstantsE2E.PLACA_CARRO_2_TEST);
-    element(by.id(ConstantsE2E.ID_BOTON_REGISTRAR)).click();
-    expect(element(by.id(ConstantsE2E.ID_LABEL_MENSAJE_ERROR)).getText()).not.toBe('');
-    // registrar salida
-    element(by.id(ConstantsE2E.ID_BOTON_CANCELAR)).click();
-    element(by.id(ConstantsE2E.ID_INPUT_BUSCAR)).sendKeys(ConstantsE2E.PLACA_CARRO_2_TEST);
-    element(by.className(ConstantsE2E.CLASS_BOTON_REGISTRAR_SALIDA)).click();
-  });
-
-  // afterEach(async () => {
-  //   // Assert that there are no errors emitted from the browser
-  //   const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-  //   expect(logs).not.toContain(jasmine.objectContaining({
-  //     level: logging.Level.SEVERE,
-  //   } as logging.Entry));
-  // });
 });
