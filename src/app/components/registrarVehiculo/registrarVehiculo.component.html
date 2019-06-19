@@ -1,0 +1,41 @@
+<alert></alert>
+<!-- Modal -->
+<div class="modal fade" id="modalRegistroIngreso" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form #vehiculoForm="ngForm"  ngNativeValidate>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registrar Vehiculo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="tipo">Tipo Veh&iacute;culo</label>
+                        <input type="text" class="form-control" id="tipo" [(ngModel)]="registro.vehicleType" name="tipo"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="placa">Placa (Requerido)</label>
+                        <input type="text" class="form-control" id="placa" [(ngModel)]="registro.placa" name="placa"
+                            maxlength="8" required>
+                    </div>
+                    <div class="form-group" *ngIf="tipo == 'MOTO'">
+                        <label for="cilindraje">Cilindraje (Requerido)</label>
+                        <input type="number" class="form-control" id="cilindraje" [(ngModel)]="registro.cilindraje"
+                            name="cilindraje" max="2000" required>
+                    </div>
+                    <div id="lblContenidoError" class="alert alert-danger" role="alert" *ngIf="mensajeError">
+                        {{mensajeError}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCancelar" class="btn btn-secondary"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btnRegistrar" (click)="registrarIngreso()" class="btn btn-success">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

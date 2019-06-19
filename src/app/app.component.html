@@ -1,0 +1,63 @@
+<registrar-vehiculo [refrescar]="listarVehiculosFunc"></registrar-vehiculo>
+<total-pago></total-pago>
+<div class="bg-warning">
+	<div class="container" align="center">
+		<div class="row" >
+				<div class="col-6">
+					<button id="btnRegistrarMoto" class="btn btn-light" title="Registrar Moto"
+						[disabled]="numeroMotos >= 10" (click)="registrarIngreso('MOTO')">
+						<i class="fa fa-motorcycle fa-5x"></i>
+					</button>
+				</div>
+				<div class="col-6">
+					<button id="btnRegistrarCarro" class="btn btn-light" title="Registrar Carro"
+						[disabled]="numeroCarros >= 20" (click)="registrarIngreso('CARRO')">
+						<i class="fa fa-car fa-5x"></i>
+					</button>
+				</div>		
+			</div>
+	</div>
+</div>
+<br>
+<br>
+<div class="container">
+	<div class="row form-group d-flex justify-content-center">
+		<div class="col-8">
+			<div class="input-group">
+				<input type="text" id="inputBuscar" class="form-control" placeholder="Buscar" [(ngModel)]="textFiltro">
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class="fa fa-search"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Tipo Vehiculo</th>
+					<th>Placa</th>
+					<th>Cilindraje</th>
+					<th>Fecha y Hora Ingreso</th>
+					<th>Acci&oacute;n</th>
+				</tr>
+			</thead>
+			<thead class="thead-light">
+				<tr *ngFor="let registro of registros | forFilter: textFiltro" >
+				
+					<td><span class="lblTipoTabla">{{registro.vehicleType}}</span></td>
+					<td><span class="lblPlacaTabla">{{registro.placa}}</span></td>
+					<td><span class="lblPlacaTabla">{{registro.cilindraje}}</span></td>
+					<td><span class="lblFechaInicioTabla">{{registro.fechaEntrada | date : 'dd/MM/yyyy HH:mm'}}</span></td>
+					<td class="text-center">
+					<button type="button" class="btnSalida btn btn-warning" (click)="registrarSalida(registro.id)">
+						Registrar Salida
+					</button></td>
+			
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
